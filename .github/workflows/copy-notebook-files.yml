@@ -1,0 +1,33 @@
+name: Copy updated Jupyter Notebook files
+
+# only run this workflow when the Jupyter Notebook files have changed on the main branch
+on: 
+  push:
+    branches: 
+      - main
+    paths:
+      - 'notebook-source/notebooks/hello-world.ipynb'
+
+jobs:
+  copy_notebook_files_to_destination-repo: 
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the notebook source repo
+      uses: actions/checkout@v3
+    # check out notebook destination repo using token generated in that repo to successfully access it from inside this GitHub Action workflow
+    - name: Check out notebook destination repo
+      uses: actions/checkout@v3
+      with:
+        repository: dacharyc/notebook-copy
+        path: ./notebook-copy
+        token: ${{ secrets.INNOCUOUS_NAME_TO_DETER_SCRAPERS }}
+    # make a copy the Jupyter Notebook file from the notebook source project
+    - name: Copy the notebook file
+      run: bash ./.github/scripts/copy-notebook-file.sh
+      env:
+        DESTINATION_PATH: ./notebook-copy/
+    # make a branch in notebook-copy repo and push the copy of the notebook file there
+    - name: Push to notebook copy repo
+      run: bash ./.github/scripts/push-to-copy-repo.sh
+      env:
+        BRANCH: jupyter-notebook-update
