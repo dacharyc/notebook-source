@@ -9,12 +9,15 @@ function l { # Log a message to the terminal.
 }
 
 # File to copy from notebook source repo
-NOTEBOOK_FILE=./notebook-source/notebooks/hello-world.ipynb
+NOTEBOOK_FILE=./notebooks/hello-world.ipynb
 
 # if the file exists in the notebook source repo, copy it to the notebook copy repo
+echo "PWD $(pwd)"
+echo "./ $(ls ./)"
+echo "../ $(ls ../)"
 if [ -f "$NOTEBOOK_FILE" ]; then
     echo "Copying $NOTEBOOK_FILE"
-    cp -R ./notebook-source/notebooks/hello-world.ipynb $DESTINATION_PATH
+    cp -R ./notebooks/hello-world.ipynb $DESTINATION_PATH
 fi
 
 echo "Notebook file copied to $DESTINATION_PATH"
