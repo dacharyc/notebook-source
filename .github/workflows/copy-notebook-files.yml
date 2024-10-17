@@ -6,7 +6,7 @@ on:
     branches: 
       - main
     paths:
-      - 'notebook-source/notebooks/hello-world.ipynb'
+      - notebooks/**
 
 jobs:
   copy_notebook_files_to_destination-repo: 
