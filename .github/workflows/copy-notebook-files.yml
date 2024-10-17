@@ -30,4 +30,4 @@ jobs:
     - name: Push to notebook copy repo
       run: bash ./.github/scripts/push-to-copy-repo.sh
       env:
-        BRANCH: jupyter-notebook-update
+        BRANCH: main

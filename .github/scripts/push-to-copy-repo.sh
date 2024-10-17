@@ -11,28 +11,14 @@ function l { # Log a message to the terminal.
 cd "./notebook-copy"
 echo "Open root of notebook-copy repo"
 
-# check if there's already a currently existing feature branch in notebook-copy for this branch
-# i.e. the altered notebook file's already been copied there at least once before
-echo "Check if feature branch $BRANCH already exists in notebook-copy"
-git ls-remote --exit-code --heads origin $BRANCH >/dev/null 2>&1
-EXIT_CODE=$?
-echo "EXIT CODE $EXIT_CODE"
-
-if [[ $EXIT_CODE == "0" ]]; then
-  echo "Git branch '$BRANCH' exists in the remote repository"
-  # fetch branches from notebook-copy
-  git fetch
-  # stash currently copied notebook
-  git stash
-  # check out existing branch from notebook-copy
-  git checkout $BRANCH 
-  # overwrite any previous copied notebook changes with current ones
-  git checkout stash -- .
-else
-  echo "Git branch '$BRANCH' does not exist in the remote repository"
-  # create a new branch in the notebook-copy repo
-  git checkout -b $BRANCH
-fi
+# fetch branches from notebook-copy
+git fetch
+# stash currently copied notebook
+git stash
+# check out existing branch from notebook-copy
+git checkout $BRANCH 
+# overwrite any previous copied notebook changes with current ones
+git checkout stash -- .
 
 git add -A .
 git config user.name github-actions
