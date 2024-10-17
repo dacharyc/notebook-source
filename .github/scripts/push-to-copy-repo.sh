@@ -8,7 +8,7 @@ function l { # Log a message to the terminal.
 }
 
 # move to the root the notebook-copy repo
-cd "./notebook-copy"
+cd $DESTINATION_PATH
 echo "Open root of notebook-copy repo"
 
 # fetch branches from notebook-copy
