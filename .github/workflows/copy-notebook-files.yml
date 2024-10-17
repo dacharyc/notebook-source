@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: dacharyc/notebook-copy
-        path: ./notebook-copy
+        path: ./notebook-copy/
         token: ${{ secrets.INNOCUOUS_NAME_TO_DETER_SCRAPERS }}
     # make a copy the Jupyter Notebook file from the notebook source project
     - name: Copy the notebook file
