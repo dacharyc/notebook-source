@@ -23,7 +23,7 @@ jobs:
         run: |
           cd go/
           touch .env
-          echo ATLAS_CONNECTION_STRING=${{ secrets.ATLAS_CONNECTION_STRING }} >> .env
+          echo "ATLAS_CONNECTION_STRING=${{ secrets.ATLAS_CONNECTION_STRING }}" >> .env
       - name: Run tests
         run: |
           cd go/tests/
