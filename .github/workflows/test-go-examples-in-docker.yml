@@ -34,10 +34,13 @@ jobs:
       - name: Create environment file with connection string
         run: |
           echo $PWD
+          cd go/
+          echo $PWD
           touch .env
           echo "ATLAS_CONNECTION_STRING=\"mongodb://localhost:<port-number>/?directConnection=true\"" >> .env
       - name: Run tests
         run: |
           echo $PWD
-          cd tests/
+          cd go/tests/
+          echo $PWD
           go test -v -p 1 ./...
