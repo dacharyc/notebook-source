@@ -26,10 +26,10 @@ import (
 func ExampleCreateIndexBasic(t *testing.T) {
 	ctx := context.Background()
 	// :remove-start:
+	// Get connection string from .env file
 	if err := godotenv.Load("../../.env"); err != nil {
 		log.Println("no .env file found")
 	}
-	// Get connection string
 	uri := os.Getenv("ATLAS_CONNECTION_STRING")
 	if uri == "" {
 		log.Fatal("set your 'ATLAS_CONNECTION_STRING' environment variable.")
