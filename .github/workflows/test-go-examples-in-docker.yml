@@ -17,7 +17,7 @@ jobs:
           mongodb-version: '8.0'
       - name: Install MongoDB Database Tools to load sample data
         run: |
-          curl https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-arm64-100.10.0.deb --output mdb-db-tools.deb
+          curl https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-100.10.0.deb --output mdb-db-tools.deb
           sudo apt install ./mdb-db-tools.deb
       - name: Download sample data
         run: curl  https://atlas-education.s3.amazonaws.com/sampledata.archive -o sampledata.archive
