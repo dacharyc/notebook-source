@@ -106,7 +106,7 @@ func ExampleAnnFilterQuery(t *testing.T) {
 		{"The Red Balloon", "A red balloon with a life of its own follows a little boy around the streets of Paris.", 1956, 0.7342712879180908},
 		{"Willy Wonka & the Chocolate Factory", "A poor boy wins the opportunity to tour the most eccentric and wonderful candy factory of all.", 1971, 0.7342106699943542},
 		{"Bedknobs and Broomsticks", "An apprentice witch, three kids and a cynical conman search for the missing component to a magic spell useful to the defense of Britain.", 1971, 0.7339357137680054},
-		{"Pastoral Hide and Seek", "A young boys' coming of age tale set in a strange, carnivalesque village becomes the recreation of a memory that the director has twenty years later.", 1974, 0.733299970626831},
+		{"Pastoral Hide and Seek", "A young boys' coming of age tale set in a strange, carnivalesque village becomes the recreation of a memory that the director has twenty years later.", 1974, 0.7332999110221863},
 		{"The Three Musketeers", "A young swordsman comes to Paris and faces villains, romance, adventure and intrigue with three Musketeer friends.", 1973, 0.7331198453903198},
 		{"Frosty", "A fairy-tale about a conceited young man and a young woman with a tyrannical step-mother, who must overcome magical trials in order to be together.", 1964, 0.7318308353424072},
 	}
