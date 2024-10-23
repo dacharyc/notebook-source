@@ -11,10 +11,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.11.0
-        with:
-          mongodb-version: '8.0'
+      # - name: Start MongoDB
+      #   uses: supercharge/mongodb-github-action@1.11.0
+      #   with:
+      #     mongodb-version: '8.0'
+      - name: Install Atlas CLI
+        run: |
+          curl https://fastdl.mongodb.org/mongocli/mongodb-atlas-cli_1.29.0_linux_x86_64.deb --output atlas-cli.deb
+          sudo apt install ./atlas-cli.deb
+      - name: Set up a local deployment using Atlas CLI
+        run: |
+          atlas deployments setup myLocalRs1 --type local --force
       - name: Install MongoDB Database Tools to load sample data
         run: |
           curl https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-100.10.0.deb --output mdb-db-tools.deb
