@@ -11,11 +11,12 @@ package manage_indexes
 import (
 	"context"
 	"fmt"
-	"github.com/joho/godotenv" // :remove:
 	"log"
 	"os"      // :remove:
 	"testing" // :remove:
 	"time"
+
+	"github.com/joho/godotenv" // :remove:
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -28,7 +29,7 @@ func ExampleCreateIndexBasic(t *testing.T) {
 	if err := godotenv.Load("../../.env"); err != nil {
 		log.Println("no .env file found")
 	}
-	// Connect to your Atlas cluster
+	// Connect to your Atlas cluster.
 	uri := os.Getenv("ATLAS_CONNECTION_STRING")
 	if uri == "" {
 		log.Fatal("set your 'ATLAS_CONNECTION_STRING' environment variable.")
