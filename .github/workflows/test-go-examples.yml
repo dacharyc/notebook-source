@@ -22,7 +22,7 @@ jobs:
       - name: Create environment file with connection string
         run: |
           cd go/
-          echo 'ATLAS_CONNECTION_STRING=\"${{secrets.ATLAS_CONNECTION_STRING}}\"' >> .env
+          echo "ATLAS_CONNECTION_STRING=\"${{secrets.ATLAS_CONNECTION_STRING}}\"" >> .env
       - name: Run tests
         run: |
           cd go/tests/
