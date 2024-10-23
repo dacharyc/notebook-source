@@ -127,10 +127,10 @@ func VerifyMovieQueryOutput(results []ProjectedMovieResult, expected []Projected
 				fmt.Printf("Title: Got \"%v\" and expected \"%v\"\n", result.Title, expected[i].Title)
 			}
 			if result.Plot != expected[i].Plot {
-				fmt.Printf("Plot: Got \"%v\" and expected \"%v\"\n", result.Plot, expected[i].Plot)
+				fmt.Printf("Plot: For %v, got \"%v\" and expected \"%v\"\n", result.Title, result.Plot, expected[i].Plot)
 			}
 			if result.Score != expected[i].Score {
-				fmt.Printf("Score: Got \"%v\" and expected \"%v\"\n", result.Score, expected[i].Score)
+				fmt.Printf("Score: For %v, got \"%v\" and expected \"%v\"\n", result.Title, result.Score, expected[i].Score)
 			}
 			localIsValid = false
 		}

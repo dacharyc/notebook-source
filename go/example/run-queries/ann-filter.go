@@ -134,13 +134,13 @@ func VerifyMovieQueryOutputWithFilter(results []ProjectedMovieResultWithFilter, 
 				fmt.Printf("Title: Got \"%v\" and expected \"%v\"\n", result.Title, expected[i].Title)
 			}
 			if result.Plot != expected[i].Plot {
-				fmt.Printf("Plot: Got \"%v\" and expected \"%v\"\n", result.Plot, expected[i].Plot)
+				fmt.Printf("Plot: For %v, got \"%v\" and expected \"%v\"\n", result.Title, result.Plot, expected[i].Plot)
 			}
 			if result.Year != expected[i].Year {
-				fmt.Printf("Year: Got \"%v\" and expected \"%v\"\n", result.Year, expected[i].Year)
+				fmt.Printf("Year: For %v, got \"%v\" and expected \"%v\"\n", result.Title, result.Year, expected[i].Year)
 			}
 			if result.Score != expected[i].Score {
-				fmt.Printf("Score: Got \"%v\" and expected \"%v\"\n", result.Score, expected[i].Score)
+				fmt.Printf("Score: For %v, got \"%v\" and expected \"%v\"\n", result.Title, result.Score, expected[i].Score)
 			}
 			localIsValid = false
 		}
