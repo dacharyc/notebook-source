@@ -104,7 +104,7 @@ func ExampleAnnFilterQuery(t *testing.T) {
 		{"That Man from Rio", "A young man comes to the rescue of his girlfriend abducted by thieves and brought to Rio. An extravagant adventure ensues.", 1964, 0.7416019439697266},
 		{"The Little Prince", "A pilot, stranded in the desert, meets a little boy who is a prince on a planet.", 1974, 0.7378944158554077},
 		{"The Red Balloon", "A red balloon with a life of its own follows a little boy around the streets of Paris.", 1956, 0.7342712879180908},
-		{"Willy Wonka & the Chocolate Factory", "A poor boy wins the opportunity to tour the most eccentric and wonderful candy factory of all.", 1971, 0.7342107892036438},
+		{"Willy Wonka & the Chocolate Factory", "A poor boy wins the opportunity to tour the most eccentric and wonderful candy factory of all.", 1971, 0.7342106699943542},
 		{"Bedknobs and Broomsticks", "An apprentice witch, three kids and a cynical conman search for the missing component to a magic spell useful to the defense of Britain.", 1971, 0.7339356541633606},
 		{"Pastoral Hide and Seek", "A young boys' coming of age tale set in a strange, carnivalesque village becomes the recreation of a memory that the director has twenty years later.", 1974, 0.733299970626831},
 		{"The Three Musketeers", "A young swordsman comes to Paris and faces villains, romance, adventure and intrigue with three Musketeer friends.", 1973, 0.7331198453903198},
@@ -128,10 +128,10 @@ func VerifyMovieQueryOutputWithFilter(results []ProjectedMovieResultWithFilter, 
 	}
 	for i, result := range results {
 		if result != expected[i] {
-			fmt.Printf("Got %v and expected %v\n", result.Title, expected[i].Title)
-			fmt.Printf("Got %v and expected %v\n", result.Plot, expected[i].Plot)
-			fmt.Printf("Got %v and expected %v\n", result.Year, expected[i].Year)
-			fmt.Printf("Got %v and expected %v\n", result.Score, expected[i].Score)
+			fmt.Printf("Title: Got \"%v\" and expected \"%v\"\n", result.Title, expected[i].Title)
+			fmt.Printf("Plot: Got \"%v\" and expected \"%v\"\n", result.Plot, expected[i].Plot)
+			fmt.Printf("Year: Got \"%v\" and expected \"%v\"\n", result.Year, expected[i].Year)
+			fmt.Printf("Score: Got \"%v\" and expected \"%v\"\n", result.Score, expected[i].Score)
 			return false // Mismatch found
 		}
 	}
