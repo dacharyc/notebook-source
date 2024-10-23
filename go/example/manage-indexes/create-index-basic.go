@@ -26,7 +26,7 @@ import (
 func ExampleCreateIndexBasic(t *testing.T) {
 	ctx := context.Background()
 	// :remove-start:
-	// Get connection string from the .env file.
+	// Get connection string from the .env file
 	if err := godotenv.Load("../../.env"); err != nil {
 		log.Println("no .env file found")
 	}
