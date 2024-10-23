@@ -29,7 +29,7 @@ func ExampleCreateIndexBasic(t *testing.T) {
 	if err := godotenv.Load("../../.env"); err != nil {
 		log.Println("no .env file found")
 	}
-	// Connect to Atlas
+	// Get connection string
 	uri := os.Getenv("ATLAS_CONNECTION_STRING")
 	if uri == "" {
 		log.Fatal("set your 'ATLAS_CONNECTION_STRING' environment variable.")
