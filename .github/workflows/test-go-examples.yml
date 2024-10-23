@@ -3,8 +3,7 @@ name: Test Go Code Examples
 on:
   pull_request:
     paths:
-      # The path below should be go/example/** but changing it temporarily to not run the tests against an Atlas cluster
-      - "go/test/**"
+      - "go/example/**"
 
 jobs:
   build:
