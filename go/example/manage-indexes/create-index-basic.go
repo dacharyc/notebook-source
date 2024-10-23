@@ -31,7 +31,7 @@ func ExampleCreateIndexBasic(t *testing.T) {
 	}
 	// Connect to server
 	uri := os.Getenv("ATLAS_CONNECTION_STRING")
-	log.Println(uri)
+	log.Println("Here is the URI: \"" + uri + "\"")
 	if uri == "" {
 		log.Fatal("set your 'ATLAS_CONNECTION_STRING' environment variable.")
 	}
