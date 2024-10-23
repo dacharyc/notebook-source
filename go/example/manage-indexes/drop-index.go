@@ -61,8 +61,8 @@ func ExampleDropIndex() {
 	fmt.Println("NOTE: This may take up to a minute.")
 	searchIndexes := coll.SearchIndexes()
 	indexNotYetDeleted := true
+	loopNumber := 0
 	for indexNotYetDeleted {
-		loopNumber := 0
 		cursor, err := searchIndexes.List(ctx, options.SearchIndexes().SetName(indexName))
 		if err != nil {
 			fmt.Errorf("failed to list search indexes: %w", err)
