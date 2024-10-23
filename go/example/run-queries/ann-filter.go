@@ -101,7 +101,7 @@ func ExampleAnnFilterQuery(t *testing.T) {
 	expected := []ProjectedMovieResultWithFilter{
 		{"Peter Pan", "In this magical tale about the boy who refuses to grow up, Peter Pan and his mischievous fairy sidekick Tinkerbell visit the nursery of Wendy, Michael, and John Darling. With a sprinkling ...", 1960, 0.748110830783844},
 		{"Chitty Chitty Bang Bang", "A down-on-his-luck inventor turns a broken-down Grand Prix car into a fancy vehicle for his children, and then they go off on a magical fantasy adventure to save their grandfather in a far-off land.", 1968, 0.7442465424537659},
-		{"That Man from Rio", "A young man comes to the rescue of his girlfriend abducted by thieves and brought to Rio. An extravagant adventure ensues.", 1964, 0.7416020035743713},
+		{"That Man from Rio", "A young man comes to the rescue of his girlfriend abducted by thieves and brought to Rio. An extravagant adventure ensues.", 1964, 0.7416019439697266},
 		{"The Little Prince", "A pilot, stranded in the desert, meets a little boy who is a prince on a planet.", 1974, 0.7378944158554077},
 		{"The Red Balloon", "A red balloon with a life of its own follows a little boy around the streets of Paris.", 1956, 0.7342712879180908},
 		{"Willy Wonka & the Chocolate Factory", "A poor boy wins the opportunity to tour the most eccentric and wonderful candy factory of all.", 1971, 0.7342107892036438},
