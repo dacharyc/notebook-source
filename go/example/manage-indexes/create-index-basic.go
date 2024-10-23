@@ -32,7 +32,7 @@ func ExampleCreateIndexBasic(t *testing.T) {
 	// Connect to server
 	uri := os.Getenv("ATLAS_CONNECTION_STRING")
 	log.Println("Here is the URI: \"" + uri + "\"")
-	secret, err := os.ReadFile("/tmp/dat")
+	secret, err := os.ReadFile("../../.env")
 	if err != nil {
 		log.Fatalf("error reading the file: %v", err)
 	}
