@@ -115,16 +115,19 @@ func ExampleAnnBasicQuery(t *testing.T) {
 // :replace-end:
 
 func VerifyMovieQueryOutput(results []ProjectedMovieResult, expected []ProjectedMovieResult) bool {
+	localIsValid := true
 	if len(results) != len(expected) {
-		return false // Length mismatch
+		localIsValid = false
+		return localIsValid
 	}
 	for i, result := range results {
+
 		if result != expected[i] {
 			fmt.Printf("Title: Got \"%v\" and expected \"%v\"\n", result.Title, expected[i].Title)
 			fmt.Printf("Plot: Got \"%v\" and expected \"%v\"\n", result.Plot, expected[i].Plot)
 			fmt.Printf("Score: Got \"%v\" and expected \"%v\"\n", result.Score, expected[i].Score)
-			return false // Mismatch found
+			localIsValid = false
 		}
 	}
-	return true // All values match
+	return localIsValid
 }

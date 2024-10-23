@@ -123,8 +123,10 @@ func ExampleAnnFilterQuery(t *testing.T) {
 // :replace-end:
 
 func VerifyMovieQueryOutputWithFilter(results []ProjectedMovieResultWithFilter, expected []ProjectedMovieResultWithFilter) bool {
+	localIsValid := true
 	if len(results) != len(expected) {
-		return false // Length mismatch
+		localIsValid = false
+		return localIsValid
 	}
 	for i, result := range results {
 		if result != expected[i] {
@@ -132,8 +134,8 @@ func VerifyMovieQueryOutputWithFilter(results []ProjectedMovieResultWithFilter, 
 			fmt.Printf("Plot: Got \"%v\" and expected \"%v\"\n", result.Plot, expected[i].Plot)
 			fmt.Printf("Year: Got \"%v\" and expected \"%v\"\n", result.Year, expected[i].Year)
 			fmt.Printf("Score: Got \"%v\" and expected \"%v\"\n", result.Score, expected[i].Score)
-			return false // Mismatch found
+			localIsValid = false
 		}
 	}
-	return true // All values match
+	return localIsValid
 }
