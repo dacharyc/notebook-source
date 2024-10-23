@@ -21,7 +21,7 @@ jobs:
           sudo apt install ./atlas-cli.deb
       - name: Set up a local deployment using Atlas CLI
         run: |
-          atlas deployments setup myLocalRs1 --type local --force
+          atlas deployments setup myLocalRs1 --type local --port 27017 --force
       - name: Install MongoDB Database Tools to load sample data
         run: |
           curl https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-100.10.0.deb --output mdb-db-tools.deb
