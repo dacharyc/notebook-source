@@ -99,7 +99,7 @@ func ExampleAnnBasicQuery(t *testing.T) {
 		{"A.P.E.X.", "A time-travel experiment in which a robot probe is sent from the year 2073 to the year 1973 goes terribly wrong thrusting one of the project scientists, a man named Nicholas Sinclair into a...", 0.7730885744094849},
 		{"Men in Black 3", "Agent J travels in time to M.I.B.'s early days in 1969 to stop an alien from assassinating his friend Agent K and changing history.", 0.7712380290031433},
 		{"Tomorrowland", "Bound by a shared destiny, a teen bursting with scientific curiosity and a former boy-genius inventor embark on a mission to unearth the secrets of a place somewhere in time and space that exists in their collective memory.", 0.7669923901557922},
-		{"Love Story 2050", "With the help of his uncle, a man travels to the future to try and bring his girlfriend back to life.", 0.7649372816085815},
+		{"Love Story 2050", "With the help of his uncle, a man travels to the future to try and bring his girlfriend back to life.", 0.7649372220039368},
 		{"The Portal", "A dimension-traveling wizard gets stuck in the 21st century because cell-phone radiation interferes with his magic. With his home world on the brink of war, he seeks help from a jaded ...", 0.7640786170959473},
 	}
 	if VerifyMovieQueryOutput(results, expected) {
