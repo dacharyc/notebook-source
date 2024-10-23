@@ -93,7 +93,7 @@ func ExampleAnnBasicQuery(t *testing.T) {
 	expected := []ProjectedMovieResult{
 		{"Thrill Seekers", "A reporter, learning of time travelers visiting 20th century disasters, tries to change the history they know by averting upcoming disasters.", 0.7892671227455139},
 		{"About Time", "At the age of 21, Tim discovers he can travel in time and change what happens and has happened in his own life. His decision to make his world a better place by getting a girlfriend turns out not to be as easy as you might think.", 0.7843604683876038},
-		{"The Time Machine", "Hoping to alter the events of the past, a 19th century inventor instead travels 800,000 years into the future, where he finds humankind divided into two warring races.", 0.7801066637039185},
+		{"The Time Machine", "Hoping to alter the events of the past, a 19th century inventor instead travels 800,000 years into the future, where he finds humankind divided into two warring races.", 0.7801067233085632},
 		{"Crusade in Jeans", "After using his mother's newly built time machine, Dolf gets stuck involuntary in the year 1212. He ends up in a children's crusade where he confronts his new friends with modern techniques...", 0.7789170742034912},
 		{"Timecop", "An officer for a security agency that regulates time travel, must fend for his life against a shady politician who has a tie to his past.", 0.7771612405776978},
 		{"A.P.E.X.", "A time-travel experiment in which a robot probe is sent from the year 2073 to the year 1973 goes terribly wrong thrusting one of the project scientists, a man named Nicholas Sinclair into a...", 0.7730885744094849},

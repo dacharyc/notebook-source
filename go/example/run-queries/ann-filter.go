@@ -11,10 +11,11 @@ package run_queries
 import (
 	"context"
 	"fmt"
-	"github.com/joho/godotenv" // :remove:
 	"log"
 	"os"      // :remove:
 	"testing" // :remove:
+
+	"github.com/joho/godotenv" // :remove:
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -127,6 +128,10 @@ func VerifyMovieQueryOutputWithFilter(results []ProjectedMovieResultWithFilter, 
 	}
 	for i, result := range results {
 		if result != expected[i] {
+			fmt.Printf("Got %v and expected %v\n", result.Title, expected[i].Title)
+			fmt.Printf("Got %v and expected %v\n", result.Plot, expected[i].Plot)
+			fmt.Printf("Got %v and expected %v\n", result.Year, expected[i].Year)
+			fmt.Printf("Got %v and expected %v\n", result.Score, expected[i].Score)
 			return false // Mismatch found
 		}
 	}
