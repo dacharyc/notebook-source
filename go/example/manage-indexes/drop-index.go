@@ -11,10 +11,11 @@ package manage_indexes
 import (
 	"context"
 	"fmt"
-	"github.com/joho/godotenv" // :remove:
 	"log"
 	"os"   // :remove:
 	"time" // :remove:
+
+	"github.com/joho/godotenv" // :remove:
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -61,6 +62,7 @@ func ExampleDropIndex() {
 	searchIndexes := coll.SearchIndexes()
 	indexNotYetDeleted := true
 	for indexNotYetDeleted {
+		loopNumber := 0
 		cursor, err := searchIndexes.List(ctx, options.SearchIndexes().SetName(indexName))
 		if err != nil {
 			fmt.Errorf("failed to list search indexes: %w", err)
@@ -71,8 +73,15 @@ func ExampleDropIndex() {
 		}
 
 		name := cursor.Current.Lookup("name").StringValue()
-		if name == indexName {
+		// If dropping the index takes more than a minute, which is 12 loops
+		// with a 5 second sleep, something has gone wrong and we should
+		// abandon all hope
+		if name == indexName && loopNumber < 12 {
 			time.Sleep(5 * time.Second)
+			loopNumber += 1
+		} else if name == indexName && loopNumber == 12 {
+			log.Fatalf("Attempted to drop the index for a minute but it's still there. Something went wrong.")
+			indexNotYetDeleted = false
 		} else {
 			indexNotYetDeleted = false
 		}
