@@ -32,6 +32,16 @@ ATLAS_CONNECTION_STRING="<your-connection-string>"
 Replace the `<your-connection-string>` placeholder with the connection
 string from the Atlas cluster you created in the prior step.
 
+Add an `ENV` environment value whose value is `"Atlas"`. This denotes that
+you are running tests against Atlas instead of a local instance. Some functionality
+is not supported in local deployment, and some query results vary between the
+two environments, so specifying the environment gives the test suite info about
+which tests to run and which outputs to expect.
+
+```
+ENV="Atlas"
+```
+
 ### Install the dependencies
 
 This test suite requires you to have `Golang` installed. If you do not yet
