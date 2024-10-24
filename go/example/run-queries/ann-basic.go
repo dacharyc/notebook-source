@@ -112,6 +112,8 @@ func VerifyMovieQueryOutput(results []ProjectedMovieResult, expected []Projected
 	localIsValid := true
 	if len(results) != len(expected) {
 		localIsValid = false
+		fmt.Printf("Expected %v results, got %v results.\n", len(expected), len(results))
+		fmt.Printf("There's a mismatch between the number of results, so this test should fail.")
 		return localIsValid
 	}
 	for i, result := range results {
