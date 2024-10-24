@@ -51,7 +51,7 @@ func TestViewIndex(t *testing.T) {
 }
 
 func TestEditIndex(t *testing.T) {
-	if os.Getenv("ENV_CI") != "" {
+	if os.Getenv("ENV_CI") == "local" {
 		t.Skip("Skipping this test in CI because it doesn't work on local Atlas")
 	}
 	manage_indexes.ExampleCreateIndexBasic(t)
