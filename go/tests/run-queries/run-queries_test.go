@@ -2,6 +2,7 @@ package tests
 
 import (
 	"go.mongodb.org/mongo-driver/bson"
+	"log"
 	"os"
 	"test-poc/example/manage-indexes"
 	"test-poc/example/run-queries"
@@ -74,6 +75,10 @@ func TestAnnQueryBasic(t *testing.T) {
 		ProjectStage:      projectStage,
 		Expected:          expected,
 		Testing:           t,
+	}
+
+	if len(scenario.Expected) == 0 {
+		log.Fatalf("The scenario has no expected results, so the test will fail. Don't bother to run the test.")
 	}
 
 	manage_indexes.ExampleCreateIndexBasic(t)
@@ -157,6 +162,11 @@ func TestAnnQueryWithFilter(t *testing.T) {
 		Expected:          expected,
 		Testing:           t,
 	}
+
+	if len(scenario.Expected) == 0 {
+		log.Fatalf("The scenario has no expected results, so the test will fail. Don't bother to run the test.")
+	}
+
 	// Test creating the index and performing a query that relies on the index
 	manage_indexes.ExampleCreateIndexFilter(t)
 	run_queries.ExampleAnnFilterQueryWithScenario(scenario)
