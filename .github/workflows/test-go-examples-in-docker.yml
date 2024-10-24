@@ -45,7 +45,7 @@ jobs:
           echo $PWD
           touch .env
           echo "ATLAS_CONNECTION_STRING=\"mongodb://localhost:27017/?directConnection=true\"" >> .env
-          echo "ENV_CI=\"local\"" >> .env
+          echo "ENV=\"local\"" >> .env
       - name: Run tests
         run: |
           echo $PWD
