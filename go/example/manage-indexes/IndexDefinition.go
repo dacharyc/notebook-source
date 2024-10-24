@@ -16,7 +16,7 @@ type IndexDefinition struct {
 		Fields []struct {
 			Type          string `bson:"type"`
 			Path          string `bson:"path"`
-			NumDimensions int64  `bson:"numDimensions"`
+			NumDimensions int    `bson:"numDimensions"`
 			Similarity    string `bson:"similarity"`
 		} `bson:"fields"`
 	} `bson:"latestDefinition"`
@@ -41,14 +41,4 @@ type IndexDefinition struct {
 			} `bson:"definition"`
 		} `bson:"mainIndex"`
 	} `bson:"statusDetail"`
-}
-
-type IndexExpectation struct {
-	Name   string `bson:"name"`
-	Fields []struct {
-		Type          string `bson:"type"`
-		Path          string `bson:"path"`
-		NumDimensions int64  `bson:"numDimensions"`
-		Similarity    string `bson:"similarity"`
-	}
 }

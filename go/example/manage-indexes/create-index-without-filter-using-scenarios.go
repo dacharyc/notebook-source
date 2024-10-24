@@ -1,7 +1,11 @@
 //	:replace-start: {
 //	  "terms": {
 //	    "manage_indexes": "main",
-//	    "ExampleCreateIndexBasic(t *testing.T)": "main()"
+//	    "ExampleCreateIndexWithoutFiltersUsingScenarios(scenario VectorIndexScenario)": "main()",
+//		"scenario.Name": "\"vector_index\"",
+//		"scenario.Fields[0].Path": "\"plot_embedding\"",
+//		"scenario.Fields[0].NumDimensions": "1536",
+//		"scenario.Fields[0].Similarity": "\"euclidean\""
 //	  }
 //	}
 //
@@ -12,8 +16,7 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"os"      // :remove:
-	"testing" // :remove:
+	"os" // :remove:
 	"time"
 
 	"github.com/joho/godotenv" // :remove:
@@ -23,7 +26,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func ExampleCreateIndexBasic(t *testing.T) {
+func ExampleCreateIndexWithoutFiltersUsingScenarios(scenario VectorIndexScenario) {
 	ctx := context.Background()
 	// :remove-start:
 	// Get the connection string from the .env file
@@ -63,16 +66,16 @@ func ExampleCreateIndexBasic(t *testing.T) {
 		Fields []vectorDefinitionField `bson:"fields"`
 	}
 
-	indexName := "vector_index"
+	indexName := scenario.Name
 	opts := options.SearchIndexes().SetName(indexName).SetType("vectorSearch")
 
 	indexModel := mongo.SearchIndexModel{
 		Definition: vectorDefinition{
 			Fields: []vectorDefinitionField{{
 				Type:          "vector",
-				Path:          "plot_embedding",
-				NumDimensions: 1536,
-				Similarity:    "euclidean"}},
+				Path:          scenario.Fields[0].Path,
+				NumDimensions: scenario.Fields[0].NumDimensions,
+				Similarity:    scenario.Fields[0].Similarity}},
 		},
 		Options: opts,
 	}
@@ -108,20 +111,11 @@ func ExampleCreateIndexBasic(t *testing.T) {
 			if err := cursor.All(ctx, &definitions); err != nil {
 				log.Fatalf("failed to unmarshal results to IndexDefinitions: %v", err)
 			}
-			expected := IndexExpectation{
-				Name: "vector_index",
-				Fields: []struct {
-					Type          string `bson:"type"`
-					Path          string `bson:"path"`
-					NumDimensions int    `bson:"numDimensions"`
-					Similarity    string `bson:"similarity"`
-				}{{"vector", "plot_embedding", 1536, "euclidean"}},
-			}
-			if VerifyIndexDefinition(definitions, []IndexExpectation{expected}) {
+			if VerfiyIndexDefinitionFromScenario(definitions, scenario) {
 				fmt.Printf("The relevant parts of the index definition match the expected outputs.\n")
 				fmt.Printf("This test should pass.\n")
 			} else {
-				t.Fail()
+				scenario.Testing.Fail()
 				fmt.Printf("The relevant parts of the index definition do not match the expected outputs.\n")
 				fmt.Printf("This test should fail.\n")
 			}

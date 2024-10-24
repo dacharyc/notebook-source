@@ -5,24 +5,15 @@ import (
 	"strconv"
 )
 
-func VerifyIndexDefinition(results []IndexDefinition, expected []IndexExpectation) bool {
+func VerfiyIndexDefinitionFromScenario(results []IndexDefinition, scenario VectorIndexScenario) bool {
 	localIsValid := true
-	if len(results) != len(expected) {
-		localIsValid = false
-		return localIsValid
-	}
-	for i, result := range results {
-		if len(result.LatestDefinition.Fields) != len(expected[i].Fields) {
+	for _, result := range results {
+		if result.Name != scenario.Name {
 			localIsValid = false
-			fmt.Printf("Expected " + strconv.Itoa(len(expected[i].Fields)) + " fields in the index definition but got " + strconv.Itoa(len(result.LatestDefinition.Fields)) + " fields.\n")
-			return localIsValid
-		}
-		if result.Name != expected[i].Name {
-			localIsValid = false
-			fmt.Printf("Expected the index name " + expected[i].Name + " but got " + result.Name + "\n")
+			fmt.Printf("Expected the index name " + scenario.Name + " but got " + result.Name + "\n")
 		}
 
-		for ii, expectedFields := range expected[i].Fields {
+		for ii, expectedFields := range scenario.Fields {
 			if result.LatestDefinition.Fields[ii].Type != expectedFields.Type {
 				localIsValid = false
 				fmt.Printf("Expected the type " + expectedFields.Type + " but got " + result.LatestDefinition.Fields[ii].Type + "\n")

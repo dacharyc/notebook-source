@@ -5,16 +5,11 @@ import (
 	"fmt"
 	"log"
 
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
-
-type ProjectedMovieResult struct {
-	Title string  `bson:"title"`
-	Plot  string  `bson:"plot"`
-	Score float64 `bson:"score"`
-}
 
 func main() {
 	ctx := context.Background()
