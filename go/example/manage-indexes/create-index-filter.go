@@ -120,7 +120,7 @@ func ExampleCreateIndexFilter(t *testing.T) {
 				Fields: []struct {
 					Type          string `bson:"type"`
 					Path          string `bson:"path"`
-					NumDimensions int64  `bson:"numDimensions"`
+					NumDimensions int    `bson:"numDimensions"`
 					Similarity    string `bson:"similarity"`
 				}{{"vector", "plot_embedding", 1536, "euclidean"}, {"filter", "genres", 0, ""}, {"filter", "year", 0, ""}},
 			}

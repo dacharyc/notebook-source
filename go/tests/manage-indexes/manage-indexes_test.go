@@ -2,13 +2,34 @@ package tests
 
 import (
 	"os"
-	manage_indexes "test-poc/example/manage-indexes"
+	"test-poc/example/manage-indexes"
 	"testing"
 )
 
 func TestCreateIndexBasic(t *testing.T) {
 	// Test creating the index and performing a query that relies on the index
 	manage_indexes.ExampleCreateIndexBasic(t)
+	// Drop the index to clear state for future tests
+	manage_indexes.ExampleDropIndex()
+}
+
+func TestCreateIndexWithoutFilterOpenAIScenario(t *testing.T) {
+	// Test creating the index and performing a query that relies on the index
+	name := "vector_index"
+	path := "plot_embedding"
+	numDimensions := 1536
+	similarity := "euclidean"
+	scenario := manage_indexes.VectorIndexScenario{
+		Name: name,
+		Fields: []struct {
+			Type          string `bson:"type"`
+			Path          string `bson:"path"`
+			NumDimensions int    `bson:"numDimensions"`
+			Similarity    string `bson:"similarity"`
+		}{{"vector", path, numDimensions, similarity}},
+		Testing: t,
+	}
+	manage_indexes.ExampleCreateIndexWithoutFiltersUsingScenarios(scenario)
 	// Drop the index to clear state for future tests
 	manage_indexes.ExampleDropIndex()
 }
