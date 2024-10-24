@@ -2,7 +2,7 @@ package tests
 
 import (
 	"os"
-	manage_indexes "test-poc/example/manage-indexes"
+	"test-poc/example/manage-indexes"
 	"testing"
 )
 
