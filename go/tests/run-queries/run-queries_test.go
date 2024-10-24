@@ -2,7 +2,9 @@ package tests
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson"
+	"log"
 	"os"
 	"test-poc/example/manage-indexes"
 	"test-poc/example/run-queries"
@@ -19,6 +21,9 @@ func TestAnnQueryBasic(t *testing.T) {
 	 * Men in Black 3: Atlas: 0.7712380886077881 Local: 0.7712380290031433
 	 * Love Story 2050: Atlas: 0.7649372816085815 Local: 0.7649372220039368
 	 */
+	if err := godotenv.Load("../../.env"); err != nil {
+		log.Println("no .env file found")
+	}
 	if os.Getenv("ENV") == "local" {
 		expected = []run_queries.ProjectedMovieResult{
 			{"Thrill Seekers", "A reporter, learning of time travelers visiting 20th century disasters, tries to change the history they know by averting upcoming disasters.", 0.7892671227455139},
@@ -102,6 +107,9 @@ func TestAnnQueryWithFilter(t *testing.T) {
 	 * Pastoral Hide and Seek: Atlas: 0.733299970626831 Local: 0.7332999110221863
 	 * The Three Musketeers: Atlas: 0.7331198453903198 Local: 0.733119785785675
 	 */
+	if err := godotenv.Load("../../.env"); err != nil {
+		log.Println("no .env file found")
+	}
 	if os.Getenv("ENV") == "local" {
 		expected = []run_queries.ProjectedMovieResultWithFilter{
 			{"Peter Pan", "In this magical tale about the boy who refuses to grow up, Peter Pan and his mischievous fairy sidekick Tinkerbell visit the nursery of Wendy, Michael, and John Darling. With a sprinkling ...", 1960, 0.748110830783844},
@@ -130,7 +138,7 @@ func TestAnnQueryWithFilter(t *testing.T) {
 		}
 	} else {
 		fmt.Printf("There was no ENV variable set. Ensure your .env file says which environment you're running these tests against.\n")
-		t.Fail()
+		t.FailNow()
 	}
 
 	queryVector := []float64{
@@ -173,7 +181,7 @@ func TestAnnQueryWithFilter(t *testing.T) {
 
 	if len(scenario.Expected) == 0 {
 		fmt.Printf("The scenario has no expected results, so the test will fail. Don't bother to run the test.\n")
-		t.Fail()
+		t.FailNow()
 	}
 
 	// Test creating the index and performing a query that relies on the index
