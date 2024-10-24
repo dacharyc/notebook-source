@@ -2,7 +2,7 @@ package tests
 
 import (
 	"os"
-	"test-poc/example/manage-indexes"
+	manage_indexes "test-poc/example/manage-indexes"
 	"testing"
 )
 
@@ -51,7 +51,7 @@ func TestViewIndex(t *testing.T) {
 }
 
 func TestEditIndex(t *testing.T) {
-	if os.Getenv("ENV_CI") == "local" {
+	if os.Getenv("ENV") == "local" {
 		t.Skip("Skipping this test in CI because it doesn't work on local Atlas")
 	}
 	manage_indexes.ExampleCreateIndexBasic(t)
