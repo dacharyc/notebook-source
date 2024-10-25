@@ -3,6 +3,7 @@ import examples.indexes.create_basic
 import examples.indexes.create_filter
 import examples.indexes.view
 import examples.indexes.drop
+import time
 from dotenv import load_dotenv
 
 class TestManageIndexes(unittest.TestCase):
@@ -24,6 +25,7 @@ class TestManageIndexes(unittest.TestCase):
     def test_view(self):
         print("----------Test examples should successfully view an index, setting up----------")
         examples.indexes.create_basic.example()
+        time.sleep(5)
         print("----------Set up complete, running tests_package----------")
         indexes = examples.indexes.view.example()
         self.assertEqual(1, len(indexes))
@@ -37,6 +39,7 @@ class TestManageIndexes(unittest.TestCase):
         self.assertEqual(1536, numDimensions)
         similarity = definitionFields[0].get("similarity")
         self.assertEqual("euclidean", similarity)
+        time.sleep(5)
 
     def test_drop(self):
         print("----------Test examples should successfully drop an index, setting up----------")
