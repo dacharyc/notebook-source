@@ -1,3 +1,4 @@
+# :snippet-start: example
 import pymongo
 import os
 
@@ -282,10 +283,11 @@ def example():
     result = client["sample_mflix"]["embedded_movies"].aggregate(pipeline)
 
     # print results
-    docs = []
+    docs = [] # :remove:
     for i in result:
         print(i)
-        docs.append(i)
+        docs.append(i) # :remove:
 
     client.close()
-    return docs
+    return docs # :remove:
+# :snippet-end:
