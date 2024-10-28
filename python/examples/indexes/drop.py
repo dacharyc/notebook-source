@@ -1,17 +1,18 @@
+#	:replace-start: {
+#	  "terms": {
+#	    "ATLAS_CONNECTION_STRING": "\"<connection-string>\""
+#	  }
+#	}
+# 
 # :snippet-start: example
 from pymongo.mongo_client import MongoClient
-import time
+import time # :remove:
 import os # :remove:
 
 def example():
     # Connect to your Atlas deployment
-    # :remove-start:
-    ATLAS_CONNECTION_STRING = os.getenv("ATLAS_CONNECTION_STRING")
+    ATLAS_CONNECTION_STRING = os.getenv("ATLAS_CONNECTION_STRING") # :remove:
     uri = ATLAS_CONNECTION_STRING
-    # :remove-end:
-    # :uncomment-start:
-    #uri = "<connection-string>"
-    # :uncomment-end:
     client = MongoClient(uri)
 
     # Access your database and collection
@@ -40,3 +41,4 @@ def example():
     # :remove-end:
     client.close()
 # :snippet-end:
+# :replace-end:

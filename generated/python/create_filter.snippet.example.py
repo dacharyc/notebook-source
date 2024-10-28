@@ -1,19 +1,10 @@
-#	:replace-start: {
-#	  "terms": {
-#	    "ATLAS_CONNECTION_STRING": "\"<connection-string>\""
-#	  }
-#	}
-# 
-# :snippet-start: example
 from pymongo.mongo_client import MongoClient
 from pymongo.operations import SearchIndexModel
 import time
-import os # :remove:
 
 def example():
     # Connect to your Atlas deployment
-    ATLAS_CONNECTION_STRING = os.getenv("ATLAS_CONNECTION_STRING") # :remove:
-    uri = ATLAS_CONNECTION_STRING
+    uri = "<connection-string>"
     client = MongoClient(uri)
 
     # Access your database and collection
@@ -63,5 +54,3 @@ def example():
     print("Search index is ready to query.")
 
     client.close()
-# :snippet-end:
-# :replace-end:
