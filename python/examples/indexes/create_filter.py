@@ -1,12 +1,18 @@
+# :snippet-start: example
 from pymongo.mongo_client import MongoClient
 from pymongo.operations import SearchIndexModel
 import time
-import os
+import os # :remove:
 
 def example():
+    # :remove-start:
     ATLAS_CONNECTION_STRING = os.getenv("ATLAS_CONNECTION_STRING")
-    # Connect to your Atlas deployment
     uri = ATLAS_CONNECTION_STRING
+    # :remove-end:
+    # :uncomment-start:
+    uri = "<connection-string>"
+    # :uncomment-end:
+    # Connect to your Atlas deployment
     client = MongoClient(uri)
 
     # Access your database and collection
@@ -56,3 +62,4 @@ def example():
     print("Search index is ready to query.")
 
     client.close()
+# :snippet-end:

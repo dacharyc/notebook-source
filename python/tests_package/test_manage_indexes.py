@@ -7,20 +7,20 @@ import time
 from dotenv import load_dotenv
 
 class TestManageIndexes(unittest.TestCase):
-    def tearDown(self):
-        print("----------Test complete, cleaning up----------")
-        examples.indexes.drop.example()
-
     def setUp(self):
         load_dotenv()
 
     def test_create_basic(self):
         print("----------Test examples should create a basic vector index----------")
         examples.indexes.create_basic.example()
+        print("----------Test complete, cleaning up----------")
+        examples.indexes.drop.example()
 
     def test_create_filter(self):
         print("----------Test examples should create a vector index with filter----------")
         examples.indexes.create_filter.example()
+        print("----------Test complete, cleaning up----------")
+        examples.indexes.drop.example()
 
     def test_view(self):
         print("----------Test examples should successfully view an index, setting up----------")
@@ -40,6 +40,8 @@ class TestManageIndexes(unittest.TestCase):
         similarity = definitionFields[0].get("similarity")
         self.assertEqual("euclidean", similarity)
         time.sleep(5)
+        print("----------Test complete, cleaning up----------")
+        examples.indexes.drop.example()
 
     def test_drop(self):
         print("----------Test examples should successfully drop an index, setting up----------")
