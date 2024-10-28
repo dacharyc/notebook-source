@@ -1,11 +1,17 @@
+# :snippet-start: example
 from pymongo.mongo_client import MongoClient
 import time
-import os
+import os # :remove:
 
 def example():
     # Connect to your Atlas deployment
+    # :remove-start:
     ATLAS_CONNECTION_STRING = os.getenv("ATLAS_CONNECTION_STRING")
     uri = ATLAS_CONNECTION_STRING
+    # :remove-end:
+    # :uncomment-start:
+    #uri = "<connection-string>"
+    # :uncomment-end:
     client = MongoClient(uri)
 
     # Access your database and collection
@@ -15,7 +21,7 @@ def example():
     index_name = "vector_index"
     # Delete your search index
     collection.drop_search_index(index_name)
-
+    # :remove-start:
     """Wait to confirm the index is done deleting."""
     print("Polling to find out if the drop index operation is complete.")
     print("Note: this may take up to a minute.")
@@ -31,5 +37,6 @@ def example():
             break
 
     print("Drop search index operation is complete.")
-
+    # :remove-end:
     client.close()
+# :snippet-end:

@@ -1,9 +1,16 @@
+# :snippet-start: example
 import pymongo
-import os
+import os # :remove:
 
 def example():
-    # connect to your Atlas cluster
+    # Connect to your Atlas deployment
+    # :remove-start:
     ATLAS_CONNECTION_STRING = os.getenv("ATLAS_CONNECTION_STRING")
+    uri = ATLAS_CONNECTION_STRING
+    # :remove-end:
+    # :uncomment-start:
+    #uri = "<connection-string>"
+    # :uncomment-end:
     client = pymongo.MongoClient(ATLAS_CONNECTION_STRING)
 
     # define pipeline
@@ -294,10 +301,11 @@ def example():
     result = client["sample_mflix"]["embedded_movies"].aggregate(pipeline)
 
     # print results
-    docs = []
+    docs = [] # :remove:
     for i in result:
         print(i)
-        docs.append(i)
+        docs.append(i) # :remove:
 
     client.close()
-    return docs
+    return docs # :remove:
+# :snippet-end:

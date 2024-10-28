@@ -1,10 +1,16 @@
 # :snippet-start: example
 import pymongo
-import os
+import os # :remove:
 
 def example():
-    # connect to your Atlas cluster
+    # Connect to your Atlas deployment
+    # :remove-start:
     ATLAS_CONNECTION_STRING = os.getenv("ATLAS_CONNECTION_STRING")
+    uri = ATLAS_CONNECTION_STRING
+    # :remove-end:
+    # :uncomment-start:
+    #uri = "<connection-string>"
+    # :uncomment-end:
     client = pymongo.MongoClient(ATLAS_CONNECTION_STRING)
 
     # define pipeline

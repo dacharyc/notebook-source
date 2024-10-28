@@ -5,9 +5,14 @@ import time
 import os
 
 def example():
-  ATLAS_CONNECTION_STRING = os.getenv("ATLAS_CONNECTION_STRING")
   # Connect to your Atlas deployment
+  # :remove-start:
+  ATLAS_CONNECTION_STRING = os.getenv("ATLAS_CONNECTION_STRING")
   uri = ATLAS_CONNECTION_STRING
+  # :remove-end:
+  # :uncomment-start:
+  #uri = "<connection-string>"
+  # :uncomment-end:
   client = MongoClient(uri)
 
   # Access your database and collection
