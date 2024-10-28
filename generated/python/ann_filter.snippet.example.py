@@ -1,17 +1,8 @@
-#	:replace-start: {
-#	  "terms": {
-#	    "ATLAS_CONNECTION_STRING": "\"<connection-string>\""
-#	  }
-#	}
-# 
-# :snippet-start: example
 import pymongo
-import os # :remove:
 
 def example():
     # Connect to your Atlas deployment
-    ATLAS_CONNECTION_STRING = os.getenv("ATLAS_CONNECTION_STRING") # :remove:
-    uri = ATLAS_CONNECTION_STRING
+    uri = "<connection-string>"
     client = pymongo.MongoClient(uri)
 
     # define pipeline
@@ -302,12 +293,7 @@ def example():
     result = client["sample_mflix"]["embedded_movies"].aggregate(pipeline)
 
     # print results
-    docs = [] # :remove:
     for i in result:
         print(i)
-        docs.append(i) # :remove:
 
     client.close()
-    return docs # :remove:
-# :snippet-end:
-# :replace-end:
