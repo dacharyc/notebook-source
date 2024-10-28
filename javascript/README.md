@@ -58,6 +58,23 @@ npm install
 
 ### Run the tests
 
+#### Run Tests from the IDE
+
+Normally, you could press the play button next to a test name to run a test
+in the IDE. Because this test suite relies on an Atlas connection string and
+environment value passed in from the environment, running tests in the IDE
+will fail unless you configure the IDE with the appropriate environment
+variables.
+
+In JetBrains IDEs, you can do the following:
+
+- Click the play button next to the test suite name
+- Select the `Modify Run Configuration` option
+- In the `Environment Variables` field, supply the appropriate environment variables
+  - Note: you do not need to use quotes around the connection string in this field
+    i.e. it should resemble:
+    ATLAS_CONNECTION_STRING=mongodb+srv://your-connection-string
+
 #### Run All Tests from the command line
 
 From the `/javascript` directory, run:
@@ -69,12 +86,17 @@ npm test
 This invokes the following command from the `package.json` `test` key:
 
 ```
-export $(xargs < .env) && jest
+export $(xargs < .env) && jest  --run-in-band
 ```
 
-The `export $(xargs < .env)` reads the values from your `.env` file and makes
-them available to Jest, the test runner. And then it invokes the Jest to
-run the tests.
+In the above command:
+
+- `export $(xargs < .env)` is Linux flag to make the contents of the `.env`
+  file available to the test suite
+- `jest` is the command to run the test suite
+- `--runInBand` is a flag that specifies only running one test at a time
+  to avoid collisions when creating/editing/dropping indexes. Otherwise, Jest
+  defaults to running tests in parallel.
 
 #### Run Test Suites from the command line
 
@@ -83,8 +105,19 @@ You can run all the tests in a given test suite (file).
 From the `/tests` directory, run:
 
 ```
-export $(xargs < .env) && jest -t '<text string from the 'describe' block you want to run>'
+export $(xargs < .env) && jest -t '<text string from the 'describe' block you want to run>' --runInBand
 ```
+
+In the above command:
+
+- `export $(xargs < .env)` is Linux flag to make the contents of the `.env`
+  file available to the test suite
+- `jest` is the command to run the test suite
+- `-t '<text string from the 'describe' block you want to run>'` is the way to
+  specify to run all tests in test suite, which in this test, is a single file
+- `--runInBand` is a flag that specifies only running one test at a time
+  to avoid collisions when creating/editing/dropping indexes. Otherwise, Jest
+  defaults to running tests in parallel.
 
 #### Run Individual Tests from the command line
 
@@ -95,6 +128,17 @@ From the `/tests` directory, run:
 ```
 export $(xargs < .env) && jest -t '<text string from the 'it' block of the test you want to run>'
 ```
+
+In the above command:
+
+- `export $(xargs < .env)` is Linux flag to make the contents of the `.env`
+  file available to the test suite
+- `jest` is the command to run the test suite
+- `-t '<text string from the 'it' block of the test you want to run>'` is the
+  way to specify to run a single test matching your text
+
+Since you are only running a single test, there is no chance of colliding
+with the other tests, so the `--runInBand` flag isn't needed.
 
 ## To run the tests in CI
 
