@@ -44,5 +44,6 @@ class TestManageIndexes(unittest.TestCase):
     def test_drop(self):
         print("----------Test examples should successfully drop an index, setting up----------")
         examples.indexes.create_basic.example()
+        time.sleep(5)
         print("----------Set up complete, running tests_package----------")
         examples.indexes.drop.example()

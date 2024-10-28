@@ -1,3 +1,4 @@
+# :snippet-start: example
 from pymongo.mongo_client import MongoClient
 from pymongo.operations import SearchIndexModel
 import time
@@ -49,3 +50,4 @@ def example():
   print("Search index is ready to query.")
 
   client.close()
+# :snippet-end:
