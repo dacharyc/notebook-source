@@ -10,7 +10,7 @@ def example():
     uri = ATLAS_CONNECTION_STRING
     # :remove-end:
     # :uncomment-start:
-    uri = "<connection-string>"
+    #uri = "<connection-string>"
     # :uncomment-end:
     # Connect to your Atlas deployment
     client = MongoClient(uri)
