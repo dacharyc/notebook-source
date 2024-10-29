@@ -34,3 +34,4 @@ export async function dropIndex() {
         await client.close();
     }
 }
+//dropIndex().catch(console.dir);
