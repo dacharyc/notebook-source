@@ -32,6 +32,7 @@ jobs:
           node-version: '22'
       - name: Install dependencies
         run: |
+          cd javascript/
           npm install
       - name: Create environment file with connection string
         run: |
