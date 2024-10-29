@@ -1,14 +1,8 @@
-//	:replace-start: {
-//	  "terms": {
-//	    "process.env.ATLAS_CONNECTION_STRING": "\"<connection-string>\""
-//	  }
-//	}
-// :snippet-start: example
 import { MongoClient } from 'mongodb';
 
 export async function dropIndex() {
     // connect to your Atlas deployment
-    const uri =  process.env.ATLAS_CONNECTION_STRING;
+    const uri =  "<connection-string>";
     const client = new MongoClient(uri);
     try {
         const database = client.db("sample_mflix");
@@ -40,8 +34,4 @@ export async function dropIndex() {
         await client.close();
     }
 }
-// :uncomment-start:
-//dropIndex().catch(console.dir);
-// :uncomment-end:
-// :snippet-end:
-// :replace-end:
+dropIndex().catch(console.dir);
