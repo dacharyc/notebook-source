@@ -9,7 +9,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "export $(xargs < .env) && jest --run-in-band"
+    "test": "export $(xargs < .env) && jest --run-in-band --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
