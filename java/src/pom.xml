@@ -44,13 +44,5 @@
             <artifactId>mongodb-driver-sync</artifactId>
             <version>5.2.0</version>
         </dependency>
-        <!-- Suppress the warning about the Driver using SLF4J -->
-        <!-- If we want to add logging in the future, switch to artifact ID `slf4j-simple` -->
-        <!-- Adds a LOT of red "INFO" output to the console which may lead some folks to think there are errors -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-nop</artifactId>
-            <version>2.0.16</version>
-        </dependency>
     </dependencies>
 </project>
