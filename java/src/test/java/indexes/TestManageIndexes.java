@@ -19,20 +19,6 @@ import java.util.Properties;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestManageIndexes {
-    @BeforeAll
-    static void setUp() {
-        var props = new Properties();
-        var envFile = Paths.get(".env");
-        try (var inputStream = Files.newInputStream(envFile)) {
-            props.load(inputStream);
-            String connectionString = props.get("ATLAS_CONNECTION_STRING").toString();
-//            System.out.println("ATLAS_CONNECTION_STRING = " + ATLAS_CONNECTION_STRING);
-
-        } catch(IOException e) {
-            System.err.println("Failed to load the .env file: " + e.getMessage());
-        }
-    }
-
     @AfterEach
     void tearDown() {
         new DropIndex().main(new String[]{"Something"});

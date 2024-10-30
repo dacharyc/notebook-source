@@ -1,5 +1,5 @@
 package indexes;
-
+// :snippet-start: example
 import com.mongodb.client.ListSearchIndexesIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -80,4 +80,4 @@ public class CreateIndexBasic {
         }
     }
 }
-
+// :snippet-end:
