@@ -18,8 +18,8 @@ jobs:
           cache: 'maven'
       - name: Set environment variables
         env:
-            ATLAS_CONNECTION_STRING: \"${{secrets.ATLAS_CONNECTION_STRING}}\"
-            ENV=\"Atlas\"
+          ATLAS_CONNECTION_STRING: \"${{secrets.ATLAS_CONNECTION_STRING}}\"
+          ENV: \"Atlas\"
       - name: Test with Maven
         run: |
           cd java/
