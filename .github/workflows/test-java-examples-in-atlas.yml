@@ -16,10 +16,15 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
           cache: 'maven'
-          cache-dependency-path: 'java/pom.xml'
-      - name: Create environment file with connection string
+      - name: Create environment variables
         run: |
           export ATLAS_CONNECTION_STRING=\"${{secrets.ATLAS_CONNECTION_STRING}}\"
           export ENV=\"Atlas\"
+      - name: Build with Maven
+        run: |
+          cd java/
+          mvn --batch-mode --update-snapshots verify
       - name: Test with Maven
-        run: mvn test
+        run: |
+          cd java/
+          mvn test
