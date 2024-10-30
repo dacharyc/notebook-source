@@ -16,11 +16,10 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
           cache: 'maven'
-      - name: Set environment variables
+      - name: Test with Maven
         env:
           ATLAS_CONNECTION_STRING: \"${{secrets.ATLAS_CONNECTION_STRING}}\"
           ENV: \"Atlas\"
-      - name: Test with Maven
         run: |
           cd java/
           mvn test
