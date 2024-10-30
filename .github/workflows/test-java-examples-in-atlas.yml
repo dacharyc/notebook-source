@@ -1,0 +1,25 @@
+name: Test Java Code Examples against Atlas
+
+on:
+  pull_request:
+    paths:
+      - "java/src/main/java/**"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'maven'
+          cache-dependency-path: 'java/pom.xml'
+      - name: Create environment file with connection string
+        run: |
+          export ATLAS_CONNECTION_STRING=\"${{secrets.ATLAS_CONNECTION_STRING}}\"
+          export ENV=\"Atlas\"
+      - name: Test with Maven
+        run: mvn test
