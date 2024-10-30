@@ -1,3 +1,8 @@
+//	:replace-start: {
+//	  "terms": {
+//	    "System.getenv("ATLAS_CONNECTION_STRING")": "<connectionString>"
+//	  }
+//	}
 package indexes;
 // :snippet-start: example
 import com.mongodb.client.ListSearchIndexesIterable;
@@ -81,3 +86,4 @@ public class CreateIndexBasic {
     }
 }
 // :snippet-end:
+// :replace-end:
