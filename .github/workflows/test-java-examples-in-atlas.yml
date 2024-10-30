@@ -21,4 +21,6 @@ jobs:
           export ATLAS_CONNECTION_STRING=\"${{secrets.ATLAS_CONNECTION_STRING}}\"
           export ENV=\"Atlas\"
       - name: Test with Maven
-        run: mvn test
+        run: |
+          cd java/
+          mvn test
