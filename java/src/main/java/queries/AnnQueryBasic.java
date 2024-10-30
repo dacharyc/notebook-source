@@ -1,5 +1,10 @@
+//	:replace-start: {
+//	  "terms": {
+//	    "System.getenv("ATLAS_CONNECTION_STRING")": "<connectionString>"
+//	  }
+//	}
 package queries;
-
+// :snippet-start: example
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -63,4 +68,5 @@ public class AnnQueryBasic {
         }
     }
 }
-
+// :snippet-end:
+// :replace-end:
