@@ -1,5 +1,10 @@
+//	:replace-start: {
+//	  "terms": {
+//	    "System.getenv("ATLAS_CONNECTION_STRING")": "<connectionString>"
+//	  }
+//	}
 package queries;
-
+// :snippet-start: example
 import static com.mongodb.client.model.Aggregates.*;
 import static com.mongodb.client.model.Projections.*;
 import static com.mongodb.client.model.search.SearchPath.fieldPath;
@@ -62,4 +67,5 @@ public class AnnQueryFilter {
         }
     }
 }
-
+// :snippet-end:
+// :replace-end:
