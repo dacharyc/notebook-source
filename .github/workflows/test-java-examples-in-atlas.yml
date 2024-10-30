@@ -16,15 +16,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
           cache: 'maven'
-      - name: Create environment variables
+      - name: Test with Maven
         run: |
           export ATLAS_CONNECTION_STRING=\"${{secrets.ATLAS_CONNECTION_STRING}}\"
           export ENV=\"Atlas\"
-      - name: Build with Maven
-        run: |
-          cd java/
-          mvn --batch-mode --update-snapshots verify
-      - name: Test with Maven
-        run: |
           cd java/
           mvn test
