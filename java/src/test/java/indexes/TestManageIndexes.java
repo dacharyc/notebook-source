@@ -5,17 +5,9 @@ import indexes.models.Field;
 import indexes.models.IndexDefinition;
 import org.bson.Document;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Properties;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestManageIndexes {
