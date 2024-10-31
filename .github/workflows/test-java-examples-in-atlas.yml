@@ -20,4 +20,8 @@ jobs:
         run: |
           export ATLAS_CONNECTION_STRING="${{secrets.ATLAS_CONNECTION_STRING}}"
           cd java/
-          mvn test
+          mvn test --batch-mode --fail-at-end
+      - name: Publish Test Report
+        if: success() || failure()
+        uses: scacap/action-surefire-report@v1
+        fail_on_test_failures: true
