@@ -10,6 +10,7 @@ public class IndexDefinition {
     private String type;
     private String status;
     private Boolean queryable;
+    private Integer latestVersion;
     private DefinitionVersion latestDefinitionVersion;
     private Definition latestDefinition;
     private ArrayList<StatusDetail> statusDetail;
@@ -45,6 +46,8 @@ public class IndexDefinition {
     public void setQueryable(Boolean queryable) {
         this.queryable = queryable;
     }
+    public Integer getLatestVersion() { return latestVersion; };
+    public void setLatestVersion(Integer latestVersion) { this.latestVersion = latestVersion; };
     public DefinitionVersion getLatestDefinitionVersion() {
         return latestDefinitionVersion;
     }
