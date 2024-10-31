@@ -35,7 +35,7 @@ public class DropIndex {
             } catch (Exception e) {
                 throw new RuntimeException("Error deleting index: " + e);
             }
-
+            // :remove-start:
             // Wait for the drop index operation to complete
             System.out.println("Polling to confirm the index has successfully been deleted.");
 
@@ -64,6 +64,7 @@ public class DropIndex {
                 }
             }
             System.out.println(indexName + " index has successfully been deleted.");
+            // :remove-end:
         } catch (Exception e) {
             throw new RuntimeException("Error connecting to MongoDB: " + e);
         }
