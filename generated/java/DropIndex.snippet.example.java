@@ -6,8 +6,6 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-import java.util.NoSuchElementException;
-
 public class DropIndex {
     public static void main(String[] args) {
         // Replace the placeholder with your Atlas connection string
