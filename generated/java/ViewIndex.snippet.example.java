@@ -24,7 +24,6 @@ public class ViewIndex {
                 void listSearchIndex = collection.listSearchIndexes().name(indexName).first();
                 if (listSearchIndex != null) {
                     System.out.println("Index found: " + listSearchIndex.toJson());
-                    return listSearchIndex;
                 } else {
                     System.out.println("Index not found.");
                 }

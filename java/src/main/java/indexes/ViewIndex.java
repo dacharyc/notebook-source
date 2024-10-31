@@ -32,7 +32,7 @@ public class ViewIndex {
                 Document listSearchIndex = collection.listSearchIndexes().name(indexName).first();
                 if (listSearchIndex != null) {
                     System.out.println("Index found: " + listSearchIndex.toJson());
-                    return listSearchIndex;
+                    return listSearchIndex; // :remove:
                 } else {
                     System.out.println("Index not found.");
                 }
