@@ -1,10 +1,3 @@
-//	:replace-start: {
-//	  "terms": {
-//	    "System.getenv(\"ATLAS_CONNECTION_STRING\")": "<connectionString>"
-//	  }
-//	}
-package queries;
-// :snippet-start: example
 import static com.mongodb.client.model.Aggregates.*;
 import static com.mongodb.client.model.Projections.*;
 import static com.mongodb.client.model.search.SearchPath.fieldPath;
@@ -27,7 +20,7 @@ import org.bson.conversions.Bson;
 public class AnnQueryFilter {
     public static ArrayList<Document> main(String[] args ) {
         // specify connection
-        String uri = System.getenv("ATLAS_CONNECTION_STRING");
+        String uri = <connectionString>;
 
         // establish connection and set namespace
         try (MongoClient mongoClient = MongoClients.create(uri)) {
@@ -58,14 +51,6 @@ public class AnnQueryFilter {
             // run query and print results
             collection.aggregate(pipeline)
                     .forEach(doc -> System.out.println(doc.toJson()));
-            // :remove-start:
-            ArrayList<Document> docs = new ArrayList<>();
-            collection.aggregate(pipeline)
-                    .forEach(docs::add);
-            return docs;
-            // :remove-end:
         }
     }
 }
-// :snippet-end:
-// :replace-end:

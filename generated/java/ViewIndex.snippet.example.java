@@ -1,10 +1,3 @@
-//	:replace-start: {
-//	  "terms": {
-//	    "System.getenv(\"ATLAS_CONNECTION_STRING\")": "<connectionString>"
-//	  }
-//	}
-package indexes;
-// :snippet-start: example
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -14,7 +7,7 @@ import org.bson.Document;
 public class ViewIndex {
     public static Document main(String[] args) {
         // Replace the placeholder with your Atlas connection string
-        String uri = System.getenv("ATLAS_CONNECTION_STRING");
+        String uri = <connectionString>;
 
         // Connect to your Atlas cluster
         try (MongoClient mongoClient = MongoClients.create(uri)) {
@@ -44,5 +37,3 @@ public class ViewIndex {
         return null;
     }
 }
-// :snippet-end:
-// :replace-end:

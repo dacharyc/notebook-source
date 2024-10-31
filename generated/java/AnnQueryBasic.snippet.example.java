@@ -1,11 +1,3 @@
-//	:replace-start: {
-//	  "terms": {
-//          "ArrayList<Document>": "void",
-//	    "System.getenv(\"ATLAS_CONNECTION_STRING\")": "<connectionString>"
-//	  }
-//	}
-package queries;
-// :snippet-start: example
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -14,7 +6,6 @@ import com.mongodb.client.model.search.FieldSearchPath;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import java.util.ArrayList; // :remove:
 import java.util.List;
 
 import static com.mongodb.client.model.Aggregates.project;
@@ -28,9 +19,9 @@ import static com.mongodb.client.model.search.VectorSearchOptions.approximateVec
 import static java.util.Arrays.asList;
 
 public class AnnQueryBasic {
-    public static ArrayList<Document> main(String[] args ) {
+    public static void main(String[] args ) {
         // specify connection
-        String uri = System.getenv("ATLAS_CONNECTION_STRING");
+        String uri = <connectionString>;
 
         // establish connection and set namespace
         try (MongoClient mongoClient = MongoClients.create(uri)) {
@@ -60,14 +51,6 @@ public class AnnQueryBasic {
             // run query and print results
             collection.aggregate(pipeline)
                     .forEach(doc -> System.out.println(doc.toJson()));
-            // :remove-start:
-            ArrayList<Document> docs = new ArrayList<>();
-            collection.aggregate(pipeline)
-                    .forEach(docs::add);
-            return docs;
-            // :remove-end:
         }
     }
 }
-// :snippet-end:
-// :replace-end:

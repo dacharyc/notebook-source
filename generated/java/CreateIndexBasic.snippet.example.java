@@ -1,10 +1,3 @@
-//	:replace-start: {
-//	  "terms": {
-//	    "System.getenv(\"ATLAS_CONNECTION_STRING\")": "<connectionString>"
-//	  }
-//	}
-package indexes;
-// :snippet-start: example
 import com.mongodb.client.ListSearchIndexesIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -16,14 +9,13 @@ import com.mongodb.client.model.SearchIndexType;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class CreateIndexFilter {
+public class CreateIndexBasic {
     public static void main(String[] args) {
         // Replace the placeholder with your Atlas connection string
-        String uri = System.getenv("ATLAS_CONNECTION_STRING");
+        String uri = <connectionString>;
 
         // Connect to your Atlas cluster
         try (MongoClient mongoClient = MongoClients.create(uri)) {
@@ -32,19 +24,15 @@ public class CreateIndexFilter {
             MongoDatabase database = mongoClient.getDatabase("sample_mflix");
             MongoCollection<Document> collection = database.getCollection("embedded_movies");
 
-            // Define the index details with the filter fields
+            // Define the index details
             String indexName = "vector_index";
             Bson definition = new Document(
                     "fields",
-                    Arrays.asList(
+                    Collections.singletonList(
                             new Document("type", "vector")
                                     .append("path", "plot_embedding")
                                     .append("numDimensions", 1536)
-                                    .append("similarity", "euclidean"),
-                            new Document("type", "filter")
-                                    .append("path", "genres"),
-                            new Document("type", "filter")
-                                    .append("path", "year")));
+                                    .append("similarity", "euclidean")));
 
             // Define the index model
             SearchIndexModel indexModel = new SearchIndexModel(
@@ -52,7 +40,7 @@ public class CreateIndexFilter {
                     definition,
                     SearchIndexType.vectorSearch());
 
-            // Create the filtered index
+            // Create the index
             try {
                 List<String> result = collection.createSearchIndexes(Collections.singletonList(indexModel));
                 System.out.println("Successfully created a vector index named: " + result);
@@ -85,11 +73,8 @@ public class CreateIndexFilter {
                 }
             }
             System.out.println(indexName + " index is ready to query");
-
         } catch (Exception e) {
             throw new RuntimeException("Error connecting to MongoDB: " + e);
         }
     }
 }
-// :snippet-end:
-// :replace-end:
