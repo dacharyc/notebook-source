@@ -17,9 +17,7 @@ jobs:
           java-version: '17'
           cache: 'maven'
       - name: Test with Maven
-        env:
-          ATLAS_CONNECTION_STRING: ${{secrets.ATLAS_CONNECTION_STRING}}
-          ENV: \"Atlas\"
         run: |
+          export ATLAS_CONNECTION_STRING=\"${{secrets.ATLAS_CONNECTION_STRING}}\"
           cd java/
           mvn test
