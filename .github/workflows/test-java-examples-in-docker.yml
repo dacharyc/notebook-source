@@ -27,7 +27,7 @@ jobs:
       - name: Add sample data to database
         run: mongorestore --archive=sampledata.archive --port=27017
       - name: Setup Java
-      - uses: actions/setup-java@v4
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
