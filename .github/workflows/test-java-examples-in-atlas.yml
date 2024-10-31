@@ -18,12 +18,11 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
-          cache: 'maven'
       - name: Test with Maven
         run: |
           export ATLAS_CONNECTION_STRING="${{secrets.ATLAS_CONNECTION_STRING}}"
           cd java/
-          mvn test --batch-mode --fail-at-end
+          mvn clean install
       - name: Publish Test Report
         if: success() || failure()
         uses: scacap/action-surefire-report@v1
