@@ -14,6 +14,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+      - name: Setup Java
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
@@ -21,6 +22,7 @@ jobs:
       - name: Test with Maven
         run: |
           export ATLAS_CONNECTION_STRING="${{secrets.ATLAS_CONNECTION_STRING}}"
+          export ENV="Atlas"
           cd java/
           mvn clean install
       - name: Publish Test Report
