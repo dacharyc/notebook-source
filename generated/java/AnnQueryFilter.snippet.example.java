@@ -18,7 +18,7 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 
 public class AnnQueryFilter {
-    public static ArrayList<Document> main(String[] args ) {
+    public static void main(String[] args ) {
         // specify connection
         String uri = <connectionString>;
 
