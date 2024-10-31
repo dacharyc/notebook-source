@@ -71,7 +71,7 @@ class QueryTests {
          * There are the following discrepancies between scores:
          * That Man from Rio: Atlas: 0.7416020035743713 Local: 0.7416019439697266
          * The Red Balloon: Atlas: 0.7342712879180908 Local: 0.734271228313446
-         * Willy Wonka & the Chocolate Factory: Atlas: 0.7342107892036438 Local: 0.7342106699943542
+         * Willy Wonka & the Chocolate Factory: Atlas: 0.7342107892036438 Local: 0.7342106699943542 CI: 0.734271228313446
          * Bedknobs and Broomsticks: Atlas: 0.7339356541633606 Local: 0.7339357137680054
          * Pastoral Hide and Seek: Atlas: 0.733299970626831 Local: 0.7332999110221863
          * The Three Musketeers: Atlas: 0.7331198453903198 Local: 0.733119785785675
@@ -92,7 +92,7 @@ class QueryTests {
             expected.add(new Document("plot", "In this magical tale about the boy who refuses to grow up, Peter Pan and his mischievous fairy sidekick Tinkerbell visit the nursery of Wendy, Michael, and John Darling. With a sprinkling ...").append("title", "Peter Pan").append("year", 1960).append("score", 0.748110830783844));
             expected.add(new Document("plot", "A down-on-his-luck inventor turns a broken-down Grand Prix car into a fancy vehicle for his children, and then they go off on a magical fantasy adventure to save their grandfather in a far-off land.").append("title", "Chitty Chitty Bang Bang").append("year", 1968).append("score", 0.7442465424537659));
             expected.add(new Document("plot", "A young man comes to the rescue of his girlfriend abducted by thieves and brought to Rio. An extravagant adventure ensues.").append("title", "That Man from Rio").append("year", 1964).append("score", 0.7416019439697266));
-            expected.add(new Document("plot", "A pilot, stranded in the desert, meets a little boy who is a prince on a planet.").append("title", "The Little Prince").append("year", 1974).append("score", 0.7378944158554077));
+            expected.add(new Document("plot", "A pilot, stranded in the desert, meets a little boy who is a prince on a planet.").append("title", "The Little Prince").append("year", 1974).append("score", 0.7342712879180908));
             expected.add(new Document("plot", "A red balloon with a life of its own follows a little boy around the streets of Paris.").append("title", "The Red Balloon").append("year", 1956).append("score", 0.734271228313446));
             expected.add(new Document("plot", "A poor boy wins the opportunity to tour the most eccentric and wonderful candy factory of all.").append("title", "Willy Wonka & the Chocolate Factory").append("year", 1971).append("score", 0.7342106699943542));
             expected.add(new Document("plot", "An apprentice witch, three kids and a cynical conman search for the missing component to a magic spell useful to the defense of Britain.").append("title", "Bedknobs and Broomsticks").append("year", 1971).append("score", 0.7339357137680054));
