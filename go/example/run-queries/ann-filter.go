@@ -1,7 +1,7 @@
 //		:replace-start: {
 //		   "terms": {
 //		      "run_queries": "main",
-//		      "ExampleAnnFilterQuery(t *testing.T)": "main()"
+//		      "ExampleAnnFilterQuery(t *testing.T) []ProjectedMovieResultWithFilter": "main()"
 //	   }
 //		}
 //
@@ -29,7 +29,7 @@ type ProjectedMovieResultWithFilter struct {
 	Score float64 `bson:"score"`
 }
 
-func ExampleAnnFilterQuery(t *testing.T) {
+func ExampleAnnFilterQuery(t *testing.T) []ProjectedMovieResultWithFilter {
 	ctx := context.Background()
 	// :remove-start:
 	if err := godotenv.Load("../../.env"); err != nil {
@@ -97,55 +97,8 @@ func ExampleAnnFilterQuery(t *testing.T) {
 	for _, result := range results {
 		fmt.Printf("Title: %v \nPlot: %v \nYear: %v \nScore: %v \n\n", result.Title, result.Plot, result.Year, result.Score)
 	}
-	// :remove-start:
-	expected := []ProjectedMovieResultWithFilter{
-		{"Peter Pan", "In this magical tale about the boy who refuses to grow up, Peter Pan and his mischievous fairy sidekick Tinkerbell visit the nursery of Wendy, Michael, and John Darling. With a sprinkling ...", 1960, 0.748110830783844},
-		{"Chitty Chitty Bang Bang", "A down-on-his-luck inventor turns a broken-down Grand Prix car into a fancy vehicle for his children, and then they go off on a magical fantasy adventure to save their grandfather in a far-off land.", 1968, 0.7442465424537659},
-		{"That Man from Rio", "A young man comes to the rescue of his girlfriend abducted by thieves and brought to Rio. An extravagant adventure ensues.", 1964, 0.7416019439697266},
-		{"The Little Prince", "A pilot, stranded in the desert, meets a little boy who is a prince on a planet.", 1974, 0.7378944158554077},
-		{"The Red Balloon", "A red balloon with a life of its own follows a little boy around the streets of Paris.", 1956, 0.7342712879180908},
-		{"Willy Wonka & the Chocolate Factory", "A poor boy wins the opportunity to tour the most eccentric and wonderful candy factory of all.", 1971, 0.7342106699943542},
-		{"Bedknobs and Broomsticks", "An apprentice witch, three kids and a cynical conman search for the missing component to a magic spell useful to the defense of Britain.", 1971, 0.7339357137680054},
-		{"Pastoral Hide and Seek", "A young boys' coming of age tale set in a strange, carnivalesque village becomes the recreation of a memory that the director has twenty years later.", 1974, 0.7332999110221863},
-		{"The Three Musketeers", "A young swordsman comes to Paris and faces villains, romance, adventure and intrigue with three Musketeer friends.", 1973, 0.733119785785675},
-		{"Frosty", "A fairy-tale about a conceited young man and a young woman with a tyrannical step-mother, who must overcome magical trials in order to be together.", 1964, 0.7318308353424072},
-	}
-	if VerifyMovieQueryOutputWithFilter(results, expected) {
-		fmt.Printf("The query results match the expected outputs. This test should pass.\n")
-	} else {
-		t.Fail()
-		fmt.Printf("Query results do not match expected query results. This test should fail.\n")
-	}
-	// :remove-end:
+	return results
 }
 
 // :snippet-end:
 // :replace-end:
-
-func VerifyMovieQueryOutputWithFilter(results []ProjectedMovieResultWithFilter, expected []ProjectedMovieResultWithFilter) bool {
-	localIsValid := true
-	if len(results) != len(expected) {
-		localIsValid = false
-		fmt.Printf("Expected %v results, got %v results.\n", len(expected), len(results))
-		fmt.Printf("There's a mismatch between the number of results, so this test should fail.\n")
-		return localIsValid
-	}
-	for i, result := range results {
-		if result != expected[i] {
-			if result.Title != expected[i].Title {
-				fmt.Printf("Title: Got \"%v\" and expected \"%v\"\n", result.Title, expected[i].Title)
-			}
-			if result.Plot != expected[i].Plot {
-				fmt.Printf("Plot: For %v, got \"%v\" and expected \"%v\"\n", result.Title, result.Plot, expected[i].Plot)
-			}
-			if result.Year != expected[i].Year {
-				fmt.Printf("Year: For %v, got \"%v\" and expected \"%v\"\n", result.Title, result.Year, expected[i].Year)
-			}
-			if result.Score != expected[i].Score {
-				fmt.Printf("Score: For %v, got \"%v\" and expected \"%v\"\n", result.Title, result.Score, expected[i].Score)
-			}
-			localIsValid = false
-		}
-	}
-	return localIsValid
-}

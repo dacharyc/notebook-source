@@ -1,7 +1,7 @@
 //	:replace-start: {
 //	   "terms": {
 //	      "run_queries": "main",
-//	      "ExampleAnnBasicQuery(t *testing.T)": "main()"
+//	      "ExampleAnnBasicQuery(t *testing.T) []ProjectedMovieResult": "main()"
 //	   }
 //	}
 //
@@ -11,18 +11,23 @@ package run_queries
 import (
 	"context"
 	"fmt"
+	"github.com/joho/godotenv" // :remove:
 	"log"
 	"os"      // :remove:
 	"testing" // :remove:
-
-	"github.com/joho/godotenv" // :remove:
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func ExampleAnnBasicQuery(t *testing.T) {
+type ProjectedMovieResult struct {
+	Title string  `bson:"title"`
+	Plot  string  `bson:"plot"`
+	Score float64 `bson:"score"`
+}
+
+func ExampleAnnBasicQuery(t *testing.T) []ProjectedMovieResult {
 	ctx := context.Background()
 	// :remove-start:
 	if err := godotenv.Load("../../.env"); err != nil {
@@ -83,53 +88,8 @@ func ExampleAnnBasicQuery(t *testing.T) {
 	for _, result := range results {
 		fmt.Printf("Title: %v \nPlot: %v \nScore: %v \n\n", result.Title, result.Plot, result.Score)
 	}
-	// :remove-start:
-	expected := []ProjectedMovieResult{
-		{"Thrill Seekers", "A reporter, learning of time travelers visiting 20th century disasters, tries to change the history they know by averting upcoming disasters.", 0.7892671227455139},
-		{"About Time", "At the age of 21, Tim discovers he can travel in time and change what happens and has happened in his own life. His decision to make his world a better place by getting a girlfriend turns out not to be as easy as you might think.", 0.7843604683876038},
-		{"The Time Machine", "Hoping to alter the events of the past, a 19th century inventor instead travels 800,000 years into the future, where he finds humankind divided into two warring races.", 0.7801067233085632},
-		{"Crusade in Jeans", "After using his mother's newly built time machine, Dolf gets stuck involuntary in the year 1212. He ends up in a children's crusade where he confronts his new friends with modern techniques...", 0.7789170742034912},
-		{"Timecop", "An officer for a security agency that regulates time travel, must fend for his life against a shady politician who has a tie to his past.", 0.7771613597869873},
-		{"A.P.E.X.", "A time-travel experiment in which a robot probe is sent from the year 2073 to the year 1973 goes terribly wrong thrusting one of the project scientists, a man named Nicholas Sinclair into a...", 0.7730885744094849},
-		{"Men in Black 3", "Agent J travels in time to M.I.B.'s early days in 1969 to stop an alien from assassinating his friend Agent K and changing history.", 0.7712380290031433},
-		{"Tomorrowland", "Bound by a shared destiny, a teen bursting with scientific curiosity and a former boy-genius inventor embark on a mission to unearth the secrets of a place somewhere in time and space that exists in their collective memory.", 0.7669923901557922},
-		{"Love Story 2050", "With the help of his uncle, a man travels to the future to try and bring his girlfriend back to life.", 0.7649372220039368},
-		{"The Portal", "A dimension-traveling wizard gets stuck in the 21st century because cell-phone radiation interferes with his magic. With his home world on the brink of war, he seeks help from a jaded ...", 0.7640786170959473},
-	}
-	if VerifyMovieQueryOutput(results, expected) {
-		fmt.Printf("The query results match the expected outputs. This test should pass.\n")
-	} else {
-		t.Fail()
-		fmt.Printf("Query results do not match expected query results. This test should fail.\n")
-	}
-	// :remove-end:
+	return results // :remove:
 }
 
 // :snippet-end:
 // :replace-end:
-
-func VerifyMovieQueryOutput(results []ProjectedMovieResult, expected []ProjectedMovieResult) bool {
-	localIsValid := true
-	if len(results) != len(expected) {
-		localIsValid = false
-		fmt.Printf("Expected %v results, got %v results.\n", len(expected), len(results))
-		fmt.Printf("There's a mismatch between the number of results, so this test should fail.\n")
-		return localIsValid
-	}
-	for i, result := range results {
-
-		if result != expected[i] {
-			if result.Title != expected[i].Title {
-				fmt.Printf("Title: Got \"%v\" and expected \"%v\"\n", result.Title, expected[i].Title)
-			}
-			if result.Plot != expected[i].Plot {
-				fmt.Printf("Plot: For %v, got \"%v\" and expected \"%v\"\n", result.Title, result.Plot, expected[i].Plot)
-			}
-			if result.Score != expected[i].Score {
-				fmt.Printf("Score: For %v, got \"%v\" and expected \"%v\"\n", result.Title, result.Score, expected[i].Score)
-			}
-			localIsValid = false
-		}
-	}
-	return localIsValid
-}
