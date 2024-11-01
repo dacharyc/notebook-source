@@ -5,8 +5,8 @@ import (
 	"github.com/joho/godotenv"
 	"log"
 	"os"
-	"test-poc/example/manage-indexes"
-	"test-poc/example/run-queries"
+	"test-poc/examples/manage-indexes"
+	"test-poc/examples/run-queries"
 	"testing"
 )
 

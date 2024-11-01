@@ -5,7 +5,7 @@
 //	   }
 //	}
 //
-// :snippet-start: example
+// :snippet-start: examples
 package manage_indexes
 
 import (
@@ -72,7 +72,7 @@ func ExampleViewIndex(t *testing.T) {
 	// :remove-start:
 	// The var below represents the commented-out 'results' above, which we don't actually use here for testing reasons
 	var someBsonVar []bson.M
-	fmt.Printf("Need to reference the variable and include BSON so the import shows in the example%v\n", someBsonVar)
+	fmt.Printf("Need to reference the variable and include BSON so the import shows in the examples%v\n", someBsonVar)
 	if len(results) > 0 {
 		fmt.Printf("Found %d indexes\n", len(results))
 		fmt.Printf("This test should pass\n.")

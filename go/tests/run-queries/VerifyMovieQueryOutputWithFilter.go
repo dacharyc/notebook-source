@@ -2,7 +2,7 @@ package tests
 
 import (
 	"fmt"
-	run_queries "test-poc/example/run-queries"
+	run_queries "test-poc/examples/run-queries"
 )
 
 func VerifyMovieQueryOutputWithFilter(results []run_queries.ProjectedMovieResultWithFilter, expected []run_queries.ProjectedMovieResultWithFilter) bool {

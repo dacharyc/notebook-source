@@ -5,7 +5,7 @@
 //	   }
 //		}
 //
-// :snippet-start: example
+// :snippet-start: examples
 package run_queries
 
 import (
