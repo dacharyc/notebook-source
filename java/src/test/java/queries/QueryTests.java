@@ -16,14 +16,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class QueryTests {
     @AfterEach
     void tearDown() {
-        new DropIndex().main(new String[]{"Something"});
+        new DropIndex().main(new String[]{"Example placeholder arg"});
     }
 
     @Test
     @DisplayName("Test basic ANN query")
     void TestAnnQueryBasic() {
-        new CreateIndexBasic().main(new String[]{"Something"});
-        ArrayList<Document> result = AnnQueryBasic.main(new String[]{"Something"});
+        new CreateIndexBasic().main(new String[]{"Example placeholder arg"});
+        ArrayList<Document> result = AnnQueryBasic.main(new String[]{"Example placeholder arg"});
         ArrayList<Document> expected = new ArrayList<>();
 
         /* Note: we are maintaining different expectations for Atlas and local deployments because not all of the scores match
@@ -63,8 +63,8 @@ class QueryTests {
     @Test
     @DisplayName("Test ANN query with filter")
     void TestAnnQueryFilter() {
-        new CreateIndexFilter().main(new String[]{"Something"});
-        ArrayList<Document> result = AnnQueryFilter.main(new String[]{"Something"});
+        new CreateIndexFilter().main(new String[]{"Example placeholder arg"});
+        ArrayList<Document> result = AnnQueryFilter.main(new String[]{"Example placeholder arg"});
         ArrayList<Document> expected = new ArrayList<>();
 
         /* Note: we are maintaining different expectations for Atlas and local deployments because not all of the scores match

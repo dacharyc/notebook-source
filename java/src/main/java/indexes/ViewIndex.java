@@ -42,7 +42,7 @@ public class ViewIndex {
         } catch (Exception e) {
             throw new RuntimeException("Error connecting to MongoDB: " + e);
         }
-        return null;
+        return null; // :remove:
     }
 }
 // :snippet-end:

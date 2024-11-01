@@ -13,14 +13,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class ManageIndexesTests {
     @AfterEach
     void tearDown() {
-        new DropIndex().main(new String[]{"Something"});
+        new DropIndex().main(new String[]{"Example placeholder arg"});
     }
 
     @Test
     @DisplayName("Test creating a basic Vector Search index")
     void TestCreateIndexBasic() {
-        new CreateIndexBasic().main(new String[]{"Something"});
-        Document index = ViewIndex.main(new String[]{"Something"});
+        new CreateIndexBasic().main(new String[]{"Example placeholder arg"});
+        Document index = ViewIndex.main(new String[]{"Example placeholder arg"});
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             IndexDefinition indexAsObject = objectMapper.readValue(index.toJson(), IndexDefinition.class);
@@ -38,8 +38,8 @@ class ManageIndexesTests {
     @Test
     @DisplayName("Test creating a Vector Search index with filter")
     void TestCreateIndexFilter() {
-        new CreateIndexFilter().main(new String[]{"Something"});
-        Document index = ViewIndex.main(new String[]{"Something"});
+        new CreateIndexFilter().main(new String[]{"Example placeholder arg"});
+        Document index = ViewIndex.main(new String[]{"Example placeholder arg"});
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             IndexDefinition indexAsObject = objectMapper.readValue(index.toJson(), IndexDefinition.class);
