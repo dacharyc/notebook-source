@@ -131,10 +131,9 @@ func TestEnnQuery(t *testing.T) {
 	var expected []run_queries.ProjectedMovieResult
 	/* Note: we are maintaining different expectations for Atlas and local deployments because not all of the scores match
 	 * There are the following discrepancies between scores:
-	 * The Time Machine: Atlas: 0.7801066637039185 Local: 0.7801067233085632
-	 * Timecop: Atlas: 0.7771612405776978 Local: 0.7771613597869873
-	 * Men in Black 3: Atlas: 0.7712380886077881 Local: 0.7712380290031433
-	 * Love Story 2050: Atlas: 0.7649372816085815 Local: 0.7649372220039368
+	 * When Trumpets Fade: Atlas: 0.7498313188552856 Local: 0.7498312592506409
+	 * Saints and Soldiers: Atlas: 0.7435222864151001 Local: 0.7435222268104553
+	 * Saints and Soldiers: Atlas: 0.743497371673584 Local: 0.7434973120689392
 	 */
 	if err := godotenv.Load("../../.env"); err != nil {
 		log.Println("no .env file found")
