@@ -1,41 +1,40 @@
 //	:replace-start: {
-//	  "terms": {
-//	    "manage_indexes": "main",
-//	    "ExampleCreateIndexBasic(t *testing.T)": "main()"
-//	  }
-//	}
+//		   "terms": {
+//		      "manage_indexes": "main",
+//		      "ExampleCreateIndexFilter(t *testing.T)": "main()"
+//		   }
+//		}
 //
-// :snippet-start: example
+// :snippet-start: examples
 package manage_indexes
 
 import (
 	"context"
 	"fmt"
+	"github.com/joho/godotenv" // :remove:
 	"log"
 	"os"      // :remove:
 	"testing" // :remove:
 	"time"
-
-	"github.com/joho/godotenv" // :remove:
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func ExampleCreateIndexBasic(t *testing.T) {
+func ExampleCreateIndexFilter(t *testing.T) {
 	ctx := context.Background()
 	// :remove-start:
-	// Get the connection string from the .env file
 	if err := godotenv.Load("../../.env"); err != nil {
 		log.Println("no .env file found")
 	}
+	// Connect to your Atlas cluster
 	uri := os.Getenv("ATLAS_CONNECTION_STRING")
 	if uri == "" {
 		log.Fatal("set your 'ATLAS_CONNECTION_STRING' environment variable.")
 	}
 	// :remove-end:
-	// Replace the placeholder
+	// Replace the placeholder with your Atlas connection string
 	// :uncomment-start:
 	//const uri = "<connection-string>"
 	// :uncomment-end:
@@ -50,8 +49,9 @@ func ExampleCreateIndexBasic(t *testing.T) {
 
 	// Set the namespace
 	coll := client.Database("sample_mflix").Collection("embedded_movies")
+	indexName := "vector_index"
+	opts := options.SearchIndexes().SetName(indexName).SetType("vectorSearch")
 
-	// Define the index details
 	type vectorDefinitionField struct {
 		Type          string `bson:"type"`
 		Path          string `bson:"path"`
@@ -59,34 +59,41 @@ func ExampleCreateIndexBasic(t *testing.T) {
 		Similarity    string `bson:"similarity"`
 	}
 
-	type vectorDefinition struct {
+	type filterField struct {
+		Type string `bson:"type"`
+		Path string `bson:"path"`
+	}
+
+	type indexDefinition struct {
 		Fields []vectorDefinitionField `bson:"fields"`
 	}
 
-	indexName := "vector_index"
-	opts := options.SearchIndexes().SetName(indexName).SetType("vectorSearch")
+	vectorDefinition := vectorDefinitionField{
+		Type:          "vector",
+		Path:          "plot_embedding",
+		NumDimensions: 1536,
+		Similarity:    "euclidean"}
+	genreFilterDefinition := filterField{"filter", "genres"}
+	yearFilterDefinition := filterField{"filter", "year"}
 
 	indexModel := mongo.SearchIndexModel{
-		Definition: vectorDefinition{
-			Fields: []vectorDefinitionField{{
-				Type:          "vector",
-				Path:          "plot_embedding",
-				NumDimensions: 1536,
-				Similarity:    "euclidean"}},
-		},
+		Definition: bson.D{{"fields", [3]interface{}{
+			vectorDefinition,
+			genreFilterDefinition,
+			yearFilterDefinition}}},
 		Options: opts,
 	}
 
 	// Create the index
-	fmt.Println("Creating the index.")
+	log.Println("Creating the index.")
 	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, indexModel)
 	if err != nil {
 		log.Fatalf("failed to create the search index: %v", err)
 	}
 
 	// Await the creation of the index.
-	fmt.Println("Polling to confirm successful index creation.")
-	fmt.Println("NOTE: This may take up to a minute.")
+	log.Println("Polling to confirm successful index creation.")
+	log.Println("NOTE: This may take up to a minute.")
 	searchIndexes := coll.SearchIndexes()
 	var doc bson.Raw
 	for doc == nil {
@@ -115,7 +122,7 @@ func ExampleCreateIndexBasic(t *testing.T) {
 					Path          string `bson:"path"`
 					NumDimensions int    `bson:"numDimensions"`
 					Similarity    string `bson:"similarity"`
-				}{{"vector", "plot_embedding", 1536, "euclidean"}},
+				}{{"vector", "plot_embedding", 1536, "euclidean"}, {"filter", "genres", 0, ""}, {"filter", "year", 0, ""}},
 			}
 			if VerifyIndexDefinition(definitions, []IndexExpectation{expected}) {
 				fmt.Printf("The relevant parts of the index definition match the expected outputs.\n")
@@ -131,7 +138,7 @@ func ExampleCreateIndexBasic(t *testing.T) {
 		}
 	}
 
-	fmt.Println("Name of Index Created: " + searchIndexName)
+	log.Println("Name of Index Created: " + searchIndexName)
 }
 
 // :snippet-end:

@@ -74,5 +74,6 @@ func main() {
 	for _, result := range results {
 		fmt.Printf("Title: %v \nPlot: %v \nYear: %v \nScore: %v \n\n", result.Title, result.Plot, result.Year, result.Score)
 	}
+	return results
 }
 

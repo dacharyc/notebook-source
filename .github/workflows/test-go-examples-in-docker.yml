@@ -3,7 +3,7 @@ name: Test Go Code Examples Against Local/Docker
 on:
   pull_request:
     paths:
-      - "go/example/**"
+      - "go/examples/**"
 
 jobs:
   build:
