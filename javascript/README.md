@@ -142,8 +142,20 @@ with the other tests, so the `--runInBand` flag isn't needed.
 
 ## To run the tests in CI
 
-A future unit of work will add a GitHub workflow that automatically runs these
-tests in CI when someone makes a change to any file in the `/examples` directory.
+Two GitHub workflows run these tests in CI automatically when you change any
+files in the `examples` directory:
+
+- `.github/workflows/test-javascript-examples-in-atlas.yml`
+- `.github/workflows/test-javascript-examples-in-docker.yml`
+
+GitHub reports the results as passing or failing checks on any PR that changes
+an example.
+
+If changing an example causes its test to fail, this should be considered
+blocking to merge the example.
+
+If changing an example causes an _unrelated_ test to fail, create a Jira ticket
+to fix the unrelated test, but this should not block merging an example update.
 
 ## To generate tested code examples
 
