@@ -3,7 +3,7 @@ name: Test Go Code Examples against Atlas
 on:
   pull_request:
     paths:
-      - "go/example/**"
+      - "go/examples/**"
 
 jobs:
   build:
